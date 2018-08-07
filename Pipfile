@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+psutil = "*"
+distributed = "*"
+dask = "*"
+ipython = "*"
+dateutils = "*"
+colorama = "*"
+blessings = "*"
+
+[requires]
+python_version = "3.6"
