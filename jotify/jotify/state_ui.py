@@ -101,6 +101,10 @@ class UI( object ):
             socket.IPPROTO_IP,
             socket.IP_ADD_MEMBERSHIP,
              mreq)
+        self.socket.setsockopt(
+            socket.SOL_SOCKET,
+            socket.SO_REUSEADDR,
+            1 )
         self.socket.settimeout( self.receive_sleep_seconds )
         self.socket.bind( server_address )
         _log().info( "Opened socket for receiving" )

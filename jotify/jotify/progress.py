@@ -29,13 +29,19 @@ def track(
 
 def _guess_name() -> Optional[str]:
     stack = inspect.stack()
+    name = None
+    stack_up_index = 2
     try:
-        caller_info = stack[2]
-        filename = pathlib.Path( caller_info.filename ).stem
-        return "{filename}.{function}.{lineno}".format(
-            filename = filename,
-            function = caller_info.function,
-            lineno = caller_info.lineno )
+        while name is None and len(stack) > stack_up_index:
+            caller_info = stack[ stack_up_index ]
+            stack_up_index += 1
+            filename = pathlib.Path( caller_info.filename ).stem
+            if filename == 'progress':
+                continue
+            name = "{filename}.{function}.{lineno}".format(
+                filename = filename,
+                function = caller_info.function,
+                lineno = caller_info.lineno )
     finally:
         del stack
     return None

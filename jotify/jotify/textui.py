@@ -28,7 +28,7 @@ def _show_state( s: State,
                     if last is not None:
                         td = datetime.datetime.now() - last
                     print( "{key} : {count}  ({td} ago)".format(
-                        key = k.ljust(30),
+                        key = k.ljust(80),
                         count = str(s.stats[k]['count']).rjust(10),
                         td = td ) )
                 except:
