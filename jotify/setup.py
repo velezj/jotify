@@ -19,7 +19,7 @@ except:
 
 setup(
     name='jotify',  # Required
-    version='0.0.1',  # Required
+    version='0.0.2',  # Required
     description='jotify',  # Required
     long_description=long_description,  # Optional
     long_description_content_type='text/markdown',  # Optional (see note above)
