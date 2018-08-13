@@ -38,6 +38,17 @@ class State( object ):
             self.stats[ id ]['timehist'].append( datetime.datetime.now() )
 
 
+    def set( self,
+             id: str,
+             count: float ) -> None:
+        with self.lock:
+            if id not in self.stats:
+                self.stats[ id ] = self._scaffold()
+            self.stats[ id ]['count'] = count
+            self.stats[ id ]['timehist'].append( datetime.datetime.now() )
+            
+
+
     def representation(self) -> bytes:
         with self.lock:
             rep = json.dumps( podify( self.stats ) ).encode( 'utf-8' )

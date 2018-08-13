@@ -20,6 +20,7 @@ def track(
     if name is None:
         name = _guess_name()
     _try_set_schema( x, name, sender )
+    sender.state.set( name, 0 )
     for i, element in enumerate(x):
         sender.state.add( name, 1 )
         yield element
