@@ -36,16 +36,19 @@ def _guess_name() -> Optional[str]:
         while name is None and len(stack) > stack_up_index:
             caller_info = stack[ stack_up_index ]
             stack_up_index += 1
+            if caller_info.filename is None or caller_info.filename == '':
+                continue
             filename = pathlib.Path( caller_info.filename ).stem
             if filename == 'progress':
                 continue
-            name = "{filename}.{function}.{lineno}".format(
-                filename = filename,
-                function = caller_info.function,
-                lineno = caller_info.lineno )
+            if caller_info.function is not None and len(filename) > 1:
+                name = "{filename}.{function}.{lineno}".format(
+                    filename = filename,
+                    function = caller_info.function,
+                    lineno = caller_info.lineno )
     finally:
         del stack
-    return None
+    return name
 
 ## ========================================================================
 
